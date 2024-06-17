@@ -1,16 +1,18 @@
 package com.example.newjeans
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.newjeans.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -18,25 +20,41 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        initNavigation()
     }
 
-    fun initMenuButtons(view: View) {
-        Toast.makeText(this, "Меню", Toast.LENGTH_SHORT).show()
-    }
+    private fun initNavigation() {
+        binding.topAppBar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.settings -> {
+                    Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
+                    true
+                }
 
-    fun initFavoritesButtons(view: View) {
-        Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
-    }
+                else -> false
+            }
+        }
 
-    fun initWatchLaterButtons(view: View) {
-        Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
-    }
+        binding.bottomNavigation.setOnNavigationItemSelectedListener {
 
-    fun initCollectionsButtons(view: View) {
-        Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
-    }
+            when (it.itemId) {
+                R.id.favorites -> {
+                    Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
+                    true
+                }
 
-    fun initSettingsButtons(view: View) {
-        Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
+                R.id.watch_later -> {
+                    Toast.makeText(this, "Посмотреть похже", Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                R.id.selections -> {
+                    Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 }
