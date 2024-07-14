@@ -6,19 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.newjeans.R
+import com.example.newjeans.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
-    private var _binding: DetailsFragment? = null
-
-    // This property is only valid between onCreateView and
-// onDestroyView.
+    private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DetailsFragment.inflate(inflater, container, false)
+        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
         return inflater.inflate(R.layout.fragment_details, container, false)
     }
