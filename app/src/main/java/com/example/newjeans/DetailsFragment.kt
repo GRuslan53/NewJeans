@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.newjeans.R
 import com.example.newjeans.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
@@ -18,7 +17,7 @@ class DetailsFragment : Fragment() {
     ): View? {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,10 +31,10 @@ class DetailsFragment : Fragment() {
         val film = arguments?.get("film") as Film
 
         //Устанавливаем заголовок
-        binding.details_toolbar.title = film.title
+        binding.detailsToolbar.title = film.title
         //Устанавливаем картинку
-        binding.details_poster.setImageResource(film.poster)
+        binding.detailsPoster.setImageResource(film.poster)
         //Устанавливаем описание
-        binding.details_description.text = film.description
+        binding.detailsDescription.text = film.description
     }
 }

@@ -1,12 +1,13 @@
 package com.amsdevelops.filmssearch
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newjeans.databinding.FilmItemBinding
 
 //В конструктор класс передается layout, который мы создали(film_item.xml)
-class FilmViewHolder(private val filmBinding: FilmItemBinding) :
+class FilmViewHolder(private var filmBinding: View) :
     RecyclerView.ViewHolder(filmBinding.root) {
     //в этом методе кладем данные из Film в наши View
     fun bind(film: Film) {
